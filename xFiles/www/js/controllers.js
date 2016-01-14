@@ -18,14 +18,5 @@ angular.module('starter.controllers', [])
     { title: 'Note6', id: 6 }
   ];
 
-})
 
-.controller('NewNoteCtrl', function($scope){
-
-})
-
-.controller('NotesCtrl', function($scope) {
-})
-
-.controller('PlaylistCtrl', function($scope) {
 });
