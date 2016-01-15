@@ -1,22 +1,22 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $stateParams) {
-  this.allNotes = localStorage.getItem("savedNotes");
+  $scope.allNotes = localStorage.getItem("savedNotes");
 
-  this.allNotes = JSON.parse(this.allNotes) || {};
+  $scope.allNotes = JSON.parse($scope.allNotes) || {};
 
-  console.log("WHAT IS THIS", this.allNotes);
+  console.log("WHAT IS $scope", $scope.allNotes);
 
-  this.currentNoteTitle = "";
-  this.currentNoteContent = "";
+  $scope.currentNoteTitle = "";
+  $scope.currentNoteContent = "";
 
   $scope.loadNoteEditor = function (chosenNote){
 
-    this.noteThingToShow = chosenNote;
+    $scope.noteThingToShow = chosenNote;
 
-    this.messageToEdit = this.allNotes[chosenNote];
+    $scope.messageToEdit = $scope.allNotes[chosenNote];
 
-    console.log("Message of the thing", this.messageToEdit);
+    console.log("Message of the thing", $scope.messageToEdit);
   }.bind(this);
 
   $scope.storeNewNote = function (){
@@ -25,22 +25,22 @@ angular.module('starter.controllers', [])
 
     storage = JSON.parse(storage) || {};
 
-    storage[this.currentNoteTitle] = this.currentNoteContent;
+    storage[$scope.currentNoteTitle] = $scope.currentNoteContent;
 
     localStorage.setItem("savedNotes", JSON.stringify(storage));
 
     console.log("Before manipulation", storage);
 
-    console.log(this.currentNoteContent);
-    console.log(this.currentNoteTitle);
+    console.log($scope.currentNoteContent);
+    console.log($scope.currentNoteTitle);
 
-  }.bind(this);
+  }.bind($scope);
 
   $scope.saveEditedNote = function (){
 
-    localStorage.setItem("savedNotes", JSON.stringify(this.allNotes));
+    localStorage.setItem("savedNotes", JSON.stringify($scope.allNotes));
 
-    console.log("app.allNotes", this.allNotes);
+    console.log("app.allNotes", $scope.allNotes);
 
 
   }.bind(this);
