@@ -36,8 +36,10 @@ angular.module('starter.controllers', [])
   };
 
   $scope.refreshMe(loadingUserNotes);
-  $scope.currentNoteTitle = "";
-  $scope.currentNoteContent = "";
+  $scope.user = {
+        currentNoteTitle:"",
+        currentNoteContent :""
+      }
 
   $ionicModal.fromTemplateUrl('templates/contact-modal.html', {
     scope: $scope,
@@ -79,18 +81,18 @@ angular.module('starter.controllers', [])
     var uniqId = new Date().getTime();
     var storage = localStorage.getItem("savedNotes");
     storage = JSON.parse(storage) || {};
-    storage[uniqId] = {"title": $scope.currentNoteTitle, "content": $scope.currentNoteContent};
+    storage[uniqId] = {"title": $scope.user.currentNoteTitle, "content": $scope.user.currentNoteContent};
     // to Local Storage on the browser
     localStorage.setItem("savedNotes", JSON.stringify(storage));
-    $scope.allNotes[uniqId] = {"title": $scope.currentNoteTitle, "content": $scope.currentNoteContent};
+    $scope.allNotes[uniqId] = {"title": $scope.user.currentNoteTitle, "content": $scope.user.currentNoteContent};
     // Within the factory to get menu to populate
     // $scope.refreshMe(storage);
     $scope.closeModal();
 
 
     // Clears fields
-    $scope.currentNoteTitle = "";
-    $scope.currentNoteContent = "";
+    $scope.user.currentNoteTitle = "";
+    $scope.user.currentNoteContent = "";
 
   }.bind(this);
 
