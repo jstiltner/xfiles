@@ -1,7 +1,35 @@
 <ion-view view-title="Add a new note">
     <ion-content class="padding" ng-controller="AppCtrl as app">
-      <input type="text" placeholder="New Note Title" ng-model="currentNoteTitle">
-      <textarea name="textarea" rows="10" cols="50" placeholder="Write something here" ng-model="currentNoteContent"></textarea>
-     <button id="add-note-launch" ng-click="storeNewNote()">Submit</button>
+      <div class="padding card">
+        <div class="item item-text-wrap">
+          <label>
+            <span class="input-label">New Item</span>
+            <input type="text" placeholder="Alien observed" ng-model="currentNoteTitle" style="width: 100%;">
+          </label>
+        </div>
+        <div class="item item-text-wrap">
+          <label>
+            <span class="input-label">Observation</span>
+            <textarea name="textarea" rows="10" cols="50" placeholder="Has 3 eyes " ng-model="currentNoteContent" style="width: 100%"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="padding">
+        <button id="add-note-launch" class="button button-block button-outline button-dark" ng-click="storeNewNote()">Submit</button>
+      </div>
     </ion-content>
 </ion-view>
+<!--
+///
+
+    <div class="padding card">
+      <div class="item item-divider">
+        {{allNotes[noteThingToShow].title}}
+      </div>
+      <div class="item item-text-wrap">
+        <textarea style="width: 100%" ng-model="allNotes[noteThingToShow].content"></textarea>
+      </div>
+    </div>
+    <div class="padding">
+      <button class="button button-dark" style="width: 100%" ng-click="saveEditedNote()">Save</button>
+    </div>
