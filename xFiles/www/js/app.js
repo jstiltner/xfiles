@@ -27,12 +27,16 @@ angular.module('xfiles', ['ionic', 'starter.controllers'])
 
     .state('app', {
     url: '/app',
-    abstract: true,
+    // abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
+    resolve: {
+      allNotes: function($stateParams, factory) {
+        console.log("from resolve");
+        return factory.getStorage();
+      }
+    }
   })
-
-
   .state('app.newnote', {
     url: '/addnote',
     views: {
@@ -41,7 +45,6 @@ angular.module('xfiles', ['ionic', 'starter.controllers'])
       }
     }
   })
-
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -54,18 +57,15 @@ angular.module('xfiles', ['ionic', 'starter.controllers'])
       url: '/playlists',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'NotesCtrl'
+          templateUrl: 'templates/playlists.html'
         }
       }
     })
-
   .state('app.single', {
-    url: '/notes/:noteId',
+    url: '/notes/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/browse.html',
-        controller: 'NotesCtrl'
+        templateUrl: 'templates/browse.html'
       }
     }
   });

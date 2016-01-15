@@ -1,45 +1,80 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $stateParams) {
-  $scope.allNotes = localStorage.getItem("savedNotes");
 
-  $scope.allNotes = JSON.parse($scope.allNotes) || {};
 
-  console.log("WHAT IS $scope", $scope.allNotes);
+.factory('factory', function() {
+  var storage = '';
 
+  return {
+
+    setStorage: function(value) {
+      storage = value;
+      return storage;
+
+    },
+    getStorage: function() {
+      return storage;
+    }
+  }
+  })
+
+
+
+
+
+
+
+.controller('AppCtrl', ["$state",  "$scope", "$ionicModal", "$timeout", "$stateParams", "factory", "$window", "$location", function($state, $scope, $ionicModal, $timeout, $stateParams, factory, $window, $location) {
+
+
+  var loadingUserNotes = localStorage.getItem("savedNotes");
+  loadingUserNotes = JSON.parse(loadingUserNotes) || {};
+
+  $scope.refreshMe = function(recentObject) {
+    console.log("in refreshme");
+    $scope.allNotes = recentObject;
+  };
+
+  $scope.refreshMe(loadingUserNotes);
   $scope.currentNoteTitle = "";
   $scope.currentNoteContent = "";
 
   $scope.loadNoteEditor = function (chosenNote){
+    // var usableLocation = $location.$$path.toString();
+    // var usableLocation = $location.$$path.split("");
+    // usableLocation = usableLocation.splice(11);
+    // usableLocation = usableLocation.join("");
+
+    // $scope.thisNoteRightNow = usableLocation;
 
     $scope.noteThingToShow = chosenNote;
-
     $scope.messageToEdit = $scope.allNotes[chosenNote];
 
-    console.log("Message of the thing", $scope.messageToEdit);
+
   }.bind(this);
 
   $scope.storeNewNote = function (){
 
-    var uniqId = Math.random().toFixed(6) * 1000000;
-    console.log("uniqId", uniqId);
-
+    var uniqId = new Date().getTime();
     var storage = localStorage.getItem("savedNotes");
-
     storage = JSON.parse(storage) || {};
-
     storage[uniqId] = {"title": $scope.currentNoteTitle, "content": $scope.currentNoteContent};
-
+    // to Local Storage on the browser
     localStorage.setItem("savedNotes", JSON.stringify(storage));
+    // Within the factory to get menu to populate
+    // $scope.refreshMe(storage);
 
-    console.log("Before manipulation", storage);
 
-    console.log($scope.currentNoteContent);
-    console.log($scope.currentNoteTitle);
+    // Clears fields
+    $scope.currentNoteTitle = "";
+    $scope.currentNoteContent = "";
 
-  }.bind($scope);
+  }.bind(this);
 
-  $scope.saveEditedNote = function (){
+  $scope.saveEditedNote = function () {
+
+
+    console.log("stateparams", $stateParams);
 
     localStorage.setItem("savedNotes", JSON.stringify($scope.allNotes));
 
@@ -48,14 +83,5 @@ angular.module('starter.controllers', [])
 
   }.bind(this);
 
-  $scope.notes = [
-    { title: 'Note1', id: 1 },
-    { title: 'Note2', id: 2 },
-    { title: 'Note3', id: 3 },
-    { title: 'Note4', id: 4 },
-    { title: 'Note5', id: 5 },
-    { title: 'Note6', id: 6 }
-  ];
 
-
-});
+}]);
