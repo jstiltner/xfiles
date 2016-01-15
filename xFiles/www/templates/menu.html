@@ -27,7 +27,8 @@
           <!-- ng-repeat for the notes-->
         <div ng-repeat="(uniqId, note) in allNotes">
           <ion-item menu-close href="/#/app/notes/{{uniqId}}" ng-click="loadNoteEditor('{{uniqId}}')">
-          {{note.title}}
+          <h2>{{note.title}}</h2>
+          <p>{{note.content}}</p>
           </ion-item>
         </div>
       </ion-list>

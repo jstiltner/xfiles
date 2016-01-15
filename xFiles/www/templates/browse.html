@@ -1,12 +1,17 @@
 <ion-view title={{allNotes[noteThingToShow].title}}>
   <ion-content>
+    <div class="padding card">
+      <div class="item item-divider">
+        {{allNotes[noteThingToShow].title}}
+      </div>
+      <div class="item item-text-wrap">
+        <textarea style="width: 100%" ng-model="allNotes[noteThingToShow].content"></textarea>
+      </div>
+    </div>
     <div class="padding">
-      <textarea ng-model="allNotes[noteThingToShow].content"></textarea>
-      <br>
-      <button ng-click="saveEditedNote()">Save</button>
-
-<!--       <textarea rows="10" cols="50" ng-model="content">{{note.content}}</textarea>
-      <button ng-click="editNote(content)">Submit</button> -->
+      <button class="button button-block button-outline button-dark" style="width: 100%" ng-click="saveEditedNote()">Save</button>
     </div>
   </ion-content>
 </ion-view>
+
+

@@ -19,23 +19,21 @@ angular.module('starter.controllers', [])
   })
 
 
-
-
-
-
-
 .controller('AppCtrl', ["$state",  "$scope", "$ionicModal", "$timeout", "$stateParams", "factory", "$window", "$location", "$ionicModal", function($state, $scope, $ionicModal, $timeout, $stateParams, factory, $window, $location, $ionicModal) {
+
 
 
   var loadingUserNotes = localStorage.getItem("savedNotes");
   loadingUserNotes = JSON.parse(loadingUserNotes) || {};
+  $scope.allNotes = loadingUserNotes;
 
-  $scope.refreshMe = function(recentObject) {
-    console.log("in refreshme");
-    $scope.allNotes = recentObject;
-  };
+  // $scope.refreshMe = function(recentObject) {
+  //   console.log("in refreshme");
+  //   $scope.allNotes = recentObject;
+  // };
 
-  $scope.refreshMe(loadingUserNotes);
+
+  // $scope.refreshMe(loadingUserNotes);
   $scope.user = {
         currentNoteTitle:"",
         currentNoteContent :""
@@ -63,14 +61,13 @@ angular.module('starter.controllers', [])
 
 
   $scope.loadNoteEditor = function (chosenNote){
-    // var usableLocation = $location.$$path.toString();
-    // var usableLocation = $location.$$path.split("");
-    // usableLocation = usableLocation.splice(11);
-    // usableLocation = usableLocation.join("");
-
-    // $scope.thisNoteRightNow = usableLocation;
-
+    console.log("chosenNote", chosenNote);
+    console.log("allNotes", $scope.allNotes);
+    // Accepts which note the user wants to view
     $scope.noteThingToShow = chosenNote;
+
+    console.log("message", $scope.allNotes[$scope.noteThingToShow]);
+
     $scope.messageToEdit = $scope.allNotes[chosenNote];
 
 

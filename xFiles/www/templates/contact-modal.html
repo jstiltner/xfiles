@@ -1,13 +1,24 @@
+<div class="modal padding">
+  <ion-header-bar>
+    <h1 class="title">Add a note</h1>
+  </ion-header-bar>
 
-  <div class="modal">
-    <ion-header-bar>
-      <h1 class="title">Add a new note</h1>
-    </ion-header-bar>
-    <ion-content>
-      <input type="text" placeholder="New Note Title" ng-model="user.currentNoteTitle">
-      <textarea name="textarea" rows="10" cols="50" placeholder="Write something here" ng-model="user.currentNoteContent"></textarea>
-     <button id="add-note-launch" ng-click="storeNewNote()">Submit</button>
-    </ion-content>
+  <div class="padding card">
+    <div class="item item-text-wrap">
+      <label>
+        <span class="input-label">New Item</span>
+        <input type="text" placeholder="Alien observed" ng-model="user.currentNoteTitle" style="width: 100%;">
+      </label>
+    </div>
+    <div class="item item-text-wrap">
+      <label>
+        <span class="input-label">Observation</span>
+        <textarea name="textarea" rows="10" cols="50" placeholder="Has 3 eyes " ng-model="user.currentNoteContent" style="width: 100%"></textarea>
+      </label>
+    </div>
   </div>
-</script>
+  <div class="padding">
+    <button id="add-note-launch" class="button button-block button-outline button-dark" ng-click="storeNewNote()">Submit</button>
+  </div>
+<div>
 
