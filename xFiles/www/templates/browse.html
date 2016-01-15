@@ -5,13 +5,12 @@
         {{allNotes[noteThingToShow].title}}
       </div>
       <div class="item item-text-wrap">
-        <textarea style="width: 100%" ng-model="allNotes[noteThingToShow].content"></textarea>
+        <textarea style="width: 100%"  ng-keyup="checkSaveStatus($event)" ng-model="allNotes[noteThingToShow].content"></textarea>
       </div>
     </div>
     <div class="padding">
-      <button class="button button-block button-outline button-dark" style="width: 100%" ng-click="saveEditedNote()">Save</button>
+      <button id="save-button" class="button button-block button-outline button-dark" style="width: 100%" ng-click="saveEditedNote()">Save</button>
     </div>
   </ion-content>
 </ion-view>
-
 

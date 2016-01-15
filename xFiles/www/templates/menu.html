@@ -24,8 +24,8 @@
           Add a note
         </ion-item>
 
-          <!-- ng-repeat for the notes-->
-        <div ng-repeat="(uniqId, note) in allNotes">
+        <!-- ng-repeat for the notes-->
+        <div ng-repeat="(uniqId, note) in allNotes | orderBy:'-'">
           <ion-item menu-close href="/#/app/notes/{{uniqId}}" ng-click="loadNoteEditor('{{uniqId}}')">
           <h2>{{note.title}}</h2>
           <p>{{note.content}}</p>

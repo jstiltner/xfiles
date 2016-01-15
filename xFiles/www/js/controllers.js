@@ -86,7 +86,8 @@ angular.module('starter.controllers', [])
     // $scope.refreshMe(storage);
     $scope.closeModal();
 
-
+    $window.location.href = `/#/app/notes/${uniqId}`;
+    $scope.loadNoteEditor(uniqId)
     // Clears fields
     $scope.user.currentNoteTitle = "";
     $scope.user.currentNoteContent = "";
@@ -104,6 +105,12 @@ angular.module('starter.controllers', [])
 
 
   }.bind(this);
+
+  $scope.checkSaveStatus = function(e) {
+
+    console.log("e", e);
+
+  }
 
 
 }]);
