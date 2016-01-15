@@ -5,7 +5,7 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="refreshMe(recentObject)">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -25,7 +25,7 @@
         </ion-item>
 
           <!-- ng-repeat for the notes-->
-        <div ng-repeat="(uniqId, note) in ::allNotes">
+        <div ng-repeat="(uniqId, note) in allNotes">
           <ion-item menu-close href="/#/app/notes/{{uniqId}}" ng-click="loadNoteEditor('{{uniqId}}')">
           {{note.title}}
           </ion-item>
