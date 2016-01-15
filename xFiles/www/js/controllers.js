@@ -21,11 +21,14 @@ angular.module('starter.controllers', [])
 
   $scope.storeNewNote = function (){
 
+    var uniqId = Math.random().toFixed(6) * 1000000;
+    console.log("uniqId", uniqId);
+
     var storage = localStorage.getItem("savedNotes");
 
     storage = JSON.parse(storage) || {};
 
-    storage[$scope.currentNoteTitle] = $scope.currentNoteContent;
+    storage[uniqId] = {"title": $scope.currentNoteTitle, "content": $scope.currentNoteContent};
 
     localStorage.setItem("savedNotes", JSON.stringify(storage));
 

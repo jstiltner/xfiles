@@ -61,10 +61,10 @@ angular.module('xfiles', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: '/notes/:playlistId',
+    url: '/notes/:noteId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
+        templateUrl: 'templates/browse.html',
         controller: 'NotesCtrl'
       }
     }
