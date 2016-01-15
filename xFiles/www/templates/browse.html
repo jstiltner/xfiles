@@ -1,8 +1,11 @@
-<ion-view view-title="{{note.title}}">
+<ion-view view-title="Your Note!">
   <ion-content>
     <div>
-      <textarea rows="10" cols="50" ng-model="content">{{note.content}}</textarea>
-      <button ng-click="editNote(content)">Submit</button>
+      <textarea ng-model="app.allNotes[app.noteThingToShow]"></textarea>
+      <button ng-click="saveEditedNote()">Save</button>
+
+<!--       <textarea rows="10" cols="50" ng-model="content">{{note.content}}</textarea>
+      <button ng-click="editNote(content)">Submit</button> -->
     </div>
   </ion-content>
 </ion-view>

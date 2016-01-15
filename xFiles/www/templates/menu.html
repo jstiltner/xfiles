@@ -25,9 +25,11 @@
         </ion-item>
 
           <!-- ng-repeat for the notes-->
-        <ion-item menu-close  ng-repeat="note in notes">
-        {{note.title}}
-        </ion-item>
+        <div ng-repeat="(note, content) in allNotes">
+          <ion-item menu-close ng-click="loadNoteEditor('{{note}}')">
+          {{note}}
+          </ion-item>
+        </div>
       </ion-list>
     </ion-content>
   </ion-side-menu>
