@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('AppCtrl', ["$state",  "$scope", "$ionicModal", "$timeout", "$stateParams", "factory", "$window", "$location", function($state, $scope, $ionicModal, $timeout, $stateParams, factory, $window, $location) {
+.controller('AppCtrl', ["$state",  "$scope", "$ionicModal", "$timeout", "$stateParams", "factory", "$window", "$location", "$ionicModal", function($state, $scope, $ionicModal, $timeout, $stateParams, factory, $window, $location, $ionicModal) {
 
 
   var loadingUserNotes = localStorage.getItem("savedNotes");
@@ -38,6 +38,27 @@ angular.module('starter.controllers', [])
   $scope.refreshMe(loadingUserNotes);
   $scope.currentNoteTitle = "";
   $scope.currentNoteContent = "";
+
+  $ionicModal.fromTemplateUrl('templates/contact-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal
+  })
+
+  $scope.openModal = function() {
+    console.log("openModal Fired" );
+    $scope.modal.show()
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
 
   $scope.loadNoteEditor = function (chosenNote){
     // var usableLocation = $location.$$path.toString();
@@ -61,8 +82,10 @@ angular.module('starter.controllers', [])
     storage[uniqId] = {"title": $scope.currentNoteTitle, "content": $scope.currentNoteContent};
     // to Local Storage on the browser
     localStorage.setItem("savedNotes", JSON.stringify(storage));
+    $scope.allNotes[uniqId] = {"title": $scope.currentNoteTitle, "content": $scope.currentNoteContent};
     // Within the factory to get menu to populate
     // $scope.refreshMe(storage);
+    $scope.closeModal();
 
 
     // Clears fields

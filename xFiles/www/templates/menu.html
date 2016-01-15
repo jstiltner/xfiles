@@ -20,12 +20,12 @@
       <ion-list>
 
 
-        <ion-item class="item item-divider" menu-close href="#/app/addnote">
+        <ion-item class="item item-divider" menu-close ng-click="openModal()">
           Add a note
         </ion-item>
 
           <!-- ng-repeat for the notes-->
-        <div ng-repeat="(uniqId, note) in ::allNotes">
+        <div ng-repeat="(uniqId, note) in allNotes">
           <ion-item menu-close href="/#/app/notes/{{uniqId}}" ng-click="loadNoteEditor('{{uniqId}}')">
           {{note.title}}
           </ion-item>
@@ -34,3 +34,4 @@
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
+

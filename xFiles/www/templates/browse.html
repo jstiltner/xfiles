@@ -1,7 +1,6 @@
-<ion-view view-title="Your Note!">
+<ion-view title={{allNotes[noteThingToShow].title}}>
   <ion-content>
     <div class="padding">
-      <h2>{{allNotes[noteThingToShow].title}}</h2>
       <textarea ng-model="allNotes[noteThingToShow].content"></textarea>
       <br>
       <button ng-click="saveEditedNote()">Save</button>

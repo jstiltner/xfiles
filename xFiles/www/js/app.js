@@ -27,7 +27,7 @@ angular.module('xfiles', ['ionic', 'starter.controllers'])
 
     .state('app', {
     url: '/app',
-    // abstract: true,
+    abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
     resolve: {
