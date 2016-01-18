@@ -62,22 +62,34 @@ angular.module('starter.controllers', [])
 
   $scope.loadNoteEditor = function (chosenNote){
     console.log("chosenNote", chosenNote);
-    console.log("allNotes", $scope.allNotes);
+    console.log("allNotes", $scope.allNotes[chosenNote]);
+    // var frozenMessage = $scope.allNotes[chosenNote].content;
     // Accepts which note the user wants to view
     $scope.noteThingToShow = chosenNote;
-
-    console.log("message", $scope.allNotes[$scope.noteThingToShow]);
-
-    $scope.messageToEdit = $scope.allNotes[chosenNote];
+    console.log("new", $scope.noteThingToShow);
+    // console.log("new", frozenMessage);
 
 
   }.bind(this);
+
+
+
+
+
+
+
+
+
 
   $scope.storeNewNote = function (){
 
     var uniqId = new Date().getTime();
     var storage = localStorage.getItem("savedNotes");
     storage = JSON.parse(storage) || {};
+
+    if ($scope.user.currentNoteTitle.length === 0) {
+      $scope.user.currentNoteTitle = "Untitled";
+    }
     storage[uniqId] = {"title": $scope.user.currentNoteTitle, "content": $scope.user.currentNoteContent};
     // to Local Storage on the browser
     localStorage.setItem("savedNotes", JSON.stringify(storage));
@@ -94,6 +106,10 @@ angular.module('starter.controllers', [])
 
   }.bind(this);
 
+  $scope.renameNote = function() {
+    console.log("hello");
+  }
+
   $scope.saveEditedNote = function () {
 
 
@@ -108,8 +124,12 @@ angular.module('starter.controllers', [])
 
   $scope.checkSaveStatus = function(e) {
 
-    console.log("e", e);
+    // console.log("e", e);
 
+  }
+
+  $scope.deleteNote = function(e) {
+    console.log("you have tried to delete a note");
   }
 
 
